@@ -1,0 +1,77 @@
+clusterStyles = [
+{
+    textColor: 'white',
+    url: '../../assets/imgs/m3.png',
+    height: 50,
+    width: 50
+}
+];
+mcOptions = {
+gridSize: 99,
+styles: this.clusterStyles,
+maxZoom: 15
+};
+
+this.locations = datasource;
+let markers = [];
+_.forEach(this.locations, (location) => {
+    let position = {
+    lat: _.toNumber(location.address.lat),
+    lng: _.toNumber(location.address.long)
+    };
+
+    let icon = {
+    url: 'path',
+    scaledSize: new google.maps.Size(35, 50),
+    origin: new google.maps.Point(0, 0),
+    }
+    let marker = new google.maps.Marker({
+    position: position,
+    animation: google.maps.Animation.DROP,
+    icon: icon
+    });
+    marker.addListener("click", () => {
+    this.onClick()
+    });
+    marker.addListener("mouseover", () => {
+    this.onHover(location);
+    });
+    markers.push(marker);
+});
+const markerCluster = new MarkerClusterer(map, markers, this.mcOptions);
+if (markerCluster) this.clusteringOn = true;
+
+
+<ngui-map
+      class="height-56"
+      [zoom]="schema.settings.zoom"
+      [center]="schema.settings.center"
+      (mapReady$)="onMapReady($event)"
+      (click)="onMapClick($event)"
+    >
+      <custom-marker
+        *ngFor="let data of schema.datasource"
+        [position]="[data.address.lat, data.address.long]"
+        (mouseenter)="onHover(data)"
+        (mouseleave)="onHoverOut()"
+        (click)="onClick()"
+        (initialized$)="onCustomMarkerInit($event, data)"
+      >
+        <!-- <img
+          [src]="schema.settings.path + schema.settings.marker[data.marker]"
+          class="custom-icon-size"
+        /> -->
+      </custom-marker>
+      <info-window
+        id="iw"
+        [pixelOffset]="{ width: 0, height: 0 }"
+        [disableAutoPan]="true"
+        [zIndex]="9999"
+      >
+        <div
+          *ngIf="schema.settings.info"
+          [innerHtml]="schema.settings.info.text"
+          [ngClass]="schema.settings.info.class"
+        ></div>
+      </info-window>
+    </ngui-map>
