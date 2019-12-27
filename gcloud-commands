@@ -1,0 +1,14 @@
+ 1  ls
+    2  uname -a
+    3  python -V
+    5  uname -a
+    6  curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-274.0.0-linux-x86_64.tar.gz
+    7  ls
+    8  sudo apt-get install tar
+   11  sudo yum install tar
+   12  tar zxvf google-cloud-sdk-274.0.0-linux-x86_64.tar.gz google-cloud-sdk
+   14  ./google-cloud-sdk/install.sh
+   17  source .bashrc
+   19  gcloud init
+   21  gcloud config list
+   22  history
