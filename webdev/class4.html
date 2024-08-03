@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>My HTML, CSS and JS Page</title>
+    </head>
+    <body>
+        <h1 style="color: Red;">Hello My Name is Saurabh</h1>
+        
+        <form>
+            <label for="firstName">What is your First Name</label><br/>
+            <input type="text" id="firstName" name="firstName" /><br/>
+            <label for="firstName">What is your Last Name</label><br/>
+            <input type="text" id="lastName" name="lastName" /><br/><br/>
+            <input type="submit" value="submit" onclick="getFullName()"/>
+        </form>
+    </body>
+    <script>
+       
+        function getFullName() {
+            var firstName = document.getElementById('firstName').value;
+            var lastName = document.getElementById('lastName').value;
+            var fullName = firstName + ' ' + lastName;
+            alert('Your full name is '+fullName);
+        }
+        
+       
+    </script>
+</html>
