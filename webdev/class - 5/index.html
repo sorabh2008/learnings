@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>HTML Forms</h2>
+
+<form action="/action_page.php">
+  <label for="fname">First name:</label><br>
+  <input type="text" id="fname" name="fname" value="John"><br><br>
+  <label for="lname">Last name:</label><br>
+  <input type="text" id="lname" name="lname" value="Doe"><br><br>
+  <input type="submit" value="Submit">
+  <br><br>
+</form>
+
+<form>
+  <label for="num1">Number 1:</label><br>
+  <input type="number" id="num1" name="num1" value="10"><br><br>
+  <label for="num2">Number 2:</label><br>
+  <input type="number" id="num2" name="num2" value="20"><br><br>
+  <input type="button" value="Calculate" onClick="calculateSum()">
+</form> 
+
+<form onsubmit="sendMessage(event)">
+<br><br>
+ <label for="message">Write your message for me:</label><br>
+  <textarea type="text" id="message" name="message" rows="4"></textarea>
+  <br><br>
+  <label for="fullName">Just so I know who you are, please enter your name:</label><br>
+  <input type="text" id="fullName" name="fullName" value="Saurabh" />
+  <br><br>
+  <input type="submit" value="Send Message" />
+</form>
+
+
+<script>
+function calculateSum() {
+	let num1 = document.getElementById('num1').value;
+    let num2 = document.getElementById('num2').value;
+    if(isNaN(num1) || isNaN(num2)){
+    	alert('Invalid');
+    } else {
+    	num1=Number.parseInt(num1);
+        num2=Number.parseInt(num2);
+ 		alert(num1+num2);   
+    }
+}
+
+function sendMessage(event) {
+  event.preventDefault();
+  console.log('sending message',event.target.elements.message.value, 'from', event.target.elements.fullName.value);
+  // window.location.href = 'success.html';
+}
+</script>
+</body>
+</html>
+
